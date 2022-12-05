@@ -1,0 +1,65 @@
+#include <iostream>
+#include <random>
+#include <ctime>
+
+// Function that flips a coin and returns "heads" or "tails"
+std::string flipCoin()
+{
+  // Seed the random number generator
+  std::srand(std::time(nullptr));
+
+  // Generate a random number between 0 and 1
+  int flip = std::rand() % 2;
+
+  // Return "heads" or "tails" depending on the flip
+  if (flip == 0)
+  {
+    return "heads";
+  }
+  else
+  {
+    return "tails";
+  }
+}
+
+// Function that runs the game
+void runGame()
+{
+  // Game loop
+  while (true)
+  {
+    // Get the player's guess
+    std::cout << "Enter your guess (heads/tails): ";
+    std::string guess;
+    std::cin >> guess;
+
+    // Flip the coin and check if the player's guess is correct
+    std::string flip = flipCoin();
+    if (guess == flip)
+    {
+      std::cout << "Correct! The coin landed on " << flip << "." << std::endl;
+    }
+    else
+    {
+      std::cout << "Incorrect! The coin landed on " << flip << "." << std::endl;
+    }
+
+    // Ask the player if they want to play again
+    std::cout << "Do you want to play again (y/n)? ";
+    std::string play_again;
+    std::cin >> play_again;
+
+    if (play_again == "n")
+    {
+      break;
+    }
+  }
+}
+
+int main()
+{
+  // Start the game
+  runGame();
+
+  return 0;
+}
